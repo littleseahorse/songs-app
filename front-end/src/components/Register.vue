@@ -1,14 +1,17 @@
 <template>
-  <div class="register">
-    <h1>{{ msgReg }}</h1>
-    <input type="email" name="email" placeholder="email" v-model="email" />
-    <input
-      type="password"
-      name="password"
-      placeholder="password"
-      v-model="password"
-    />
-    <button @click="register">Register</button>
+  <div class="register flex content-center direction-column">
+    <h2 class="flex-item uppercase">{{ msg }}</h2>
+    <div class="flex-item flex direction-column vertical-align-center">
+      <input type="email" name="email" placeholder="email" v-model="email" />
+      <input
+        type="password"
+        name="password"
+        placeholder="password"
+        v-model="password"
+      />
+      <div class="error" v-html="error" />
+      <button class="uppercase" @click="register">Register</button>
+    </div>
   </div>
 </template>
 
@@ -19,17 +22,22 @@ export default {
   props: {},
   data() {
     return {
-      msgReg: 'This your chance to register!',
+      msg: 'This your chance to register!',
       email: '',
       password: '',
+      error: null,
     };
   },
   methods: {
     async register() {
-      await AuthenticationService.register({
-        email: this.email,
-        password: this.password,
-      });
+      try {
+        await AuthenticationService.register({
+          email: this.email,
+          password: this.password,
+        });
+      } catch (error) {
+        this.error = error.response.data.error;
+      }
     },
   },
 };
@@ -37,18 +45,17 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-h3 {
-  margin: 40px 0 0;
+.register {
+  max-width: 95%;
+  width: 600px;
+  margin: 0 auto;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
 }
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.register h2 {
+  margin: 0 0 10px;
+  padding: 15px 0 10px;
+  line-height: 1.5;
+  font-size: 1.15em;
+  background-color: #48d1cc;
 }
 </style>
