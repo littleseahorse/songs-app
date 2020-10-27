@@ -4,10 +4,22 @@
       id="nav"
       class="flex direction-row content-around vertical-align-center"
     >
-      <h1 class="uppercase">{{ msg }}</h1>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link> |
-      <router-link to="/register">Register</router-link>
+      <h2 class="uppercase">{{ msg }}</h2>
+      <div>|</div>
+      <router-link to="/">Home</router-link>
+      <div>|</div>
+      <router-link to="/about">About</router-link>
+      <div>|</div>
+      <router-link v-if="!$store.state.isUserLoggedIn" to="/register"
+        >Register</router-link
+      >
+      <div v-if="!$store.state.isUserLoggedIn">|</div>
+      <router-link v-if="!$store.state.isUserLoggedIn" to="/login"
+        >Log In</router-link
+      >
+      <router-link v-if="$store.state.isUserLoggedIn" @click="logout" to="/"
+        >Log Out</router-link
+      >
     </div>
   </header>
 </template>
@@ -20,6 +32,12 @@ export default {
       msg: 'Songs Tracker',
     };
   },
+  methods: {
+    logout() {
+      this.$store.dispatch('setToken', null);
+      this.$store.dispatch('setUser', null);
+    },
+  },
 };
 </script>
 
@@ -31,8 +49,8 @@ export default {
   height: 100px;
   margin: 0 0 100px;
 }
-.header h1 {
+.header h2 {
   margin: 0;
-  font-size: 1.15em;
+  padding: 0;
 }
 </style>

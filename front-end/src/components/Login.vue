@@ -1,8 +1,7 @@
 <template>
   <form
-    class="register flex content-center direction-column"
-    v-on:submit.prevent="register"
-    autocomplete="off"
+    class="login flex content-center direction-column"
+    v-on:submit.prevent="login"
   >
     <h2 class="flex-item uppercase">{{ msg }}</h2>
     <div class="flex-item flex direction-column vertical-align-center">
@@ -12,10 +11,9 @@
         name="password"
         placeholder="Password"
         v-model="password"
-        autocomplete="new-password"
       />
       <div class="error" v-html="error" />
-      <button class="uppercase">Register</button>
+      <button class="uppercase">Login</button>
     </div>
   </form>
 </template>
@@ -23,20 +21,20 @@
 <script>
 import AuthenticationService from '../services/AuthenticationService';
 export default {
-  name: 'Register',
+  name: 'Login',
   props: {},
   data() {
     return {
-      msg: 'Your chance to register!',
+      msg: 'Welcome back! Have fun!',
       email: '',
       password: '',
       error: null,
     };
   },
   methods: {
-    async register() {
+    async login() {
       try {
-        const response = await AuthenticationService.register({
+        const response = await AuthenticationService.login({
           email: this.email,
           password: this.password,
         });

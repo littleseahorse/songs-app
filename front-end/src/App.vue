@@ -16,6 +16,16 @@ export default {
 </script>
 
 <style>
+* {
+  box-sizing: border-box;
+  font-display: auto;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 html {
   overflow-y: scroll;
   overflow-x: hidden;
@@ -32,19 +42,33 @@ body {
   color: #2f4f4f;
   background-color: #fff;
 }
-* {
-  box-sizing: border-box;
-  font-display: auto;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-*::before,
-*::after {
-  box-sizing: border-box;
-}
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
   text-align: center;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  margin: 0 0 20px;
+  line-height: normal;
+  font-weight: bold;
+}
+h1 {
+  margin: 20px auto;
+  font-size: 2em;
+}
+h2 {
+  margin: 0 0 10px;
+  padding: 15px 0 10px;
+  font-size: 1em;
+  color: #ffffff;
+}
+h3 {
+  margin: 40px 0 0;
 }
 ul {
   list-style-type: none;
@@ -77,6 +101,15 @@ a {
 #nav a.router-link-exact-active {
   color: #fff;
 }
+form {
+  max-width: 95%;
+  width: 600px;
+  margin: 0 auto;
+  box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
+}
+form h2 {
+  background-color: #48d1cc;
+}
 input {
   width: 180px;
   margin: 10px 0 0;
@@ -90,7 +123,7 @@ input:focus {
   background-color: #d5f4f3;
 }
 button {
-  margin: 10px 0;
+  margin: 10px 0 20px;
   padding: 5px 15px;
   color: #2f4f4f;
   background-color: #48d1cc;

@@ -10,4 +10,7 @@ module.exports = {
       storage: './songs-app.sqlite',
     },
   },
+  authentication: {
+    jwtSecret: process.env.JWT_SECRET || 'secret',
+  },
 };
