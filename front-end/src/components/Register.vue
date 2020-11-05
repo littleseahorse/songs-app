@@ -1,23 +1,21 @@
 <template>
-  <form
-    class="register flex content-center direction-column"
-    v-on:submit.prevent="register"
-    autocomplete="off"
-  >
+  <section class="register flex content-center direction-column">
     <h2 class="flex-item uppercase">{{ msg }}</h2>
-    <div class="flex-item flex direction-column vertical-align-center">
-      <input type="email" name="email" placeholder="Email" v-model="email" />
-      <input
-        type="password"
-        name="password"
-        placeholder="Password"
-        v-model="password"
-        autocomplete="new-password"
-      />
-      <div class="error" v-html="error" />
-      <button class="uppercase">Register</button>
-    </div>
-  </form>
+    <form v-on:submit.prevent="register" autocomplete="off">
+      <div class="flex-item flex direction-column vertical-align-center">
+        <input type="email" name="email" placeholder="Email" v-model="email" />
+        <input
+          type="password"
+          name="password"
+          placeholder="Password"
+          v-model="password"
+          autocomplete="new-password"
+        />
+        <div class="error" v-html="error" />
+        <button class="uppercase">Register</button>
+      </div>
+    </form>
+  </section>
 </template>
 
 <script>

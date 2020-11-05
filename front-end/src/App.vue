@@ -101,23 +101,25 @@ a {
 #nav a.router-link-exact-active {
   color: #fff;
 }
-form {
+section {
   max-width: 95%;
   width: 600px;
   margin: 0 auto;
   box-shadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.2);
 }
-form h2 {
+section h2 {
   background-color: #48d1cc;
 }
-input {
+input,
+textarea {
   width: 180px;
-  margin: 10px 0 0;
+  margin: 20px 0 0;
   padding: 5px 7px;
   border-color: #48d1cc;
   color: #2f4f4f;
 }
-input:focus {
+input:focus,
+textarea:focus {
   outline: none;
   border-color: #fff;
   background-color: #d5f4f3;

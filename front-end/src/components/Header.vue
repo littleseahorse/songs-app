@@ -10,6 +10,8 @@
       <div>|</div>
       <router-link to="/about">About</router-link>
       <div>|</div>
+      <router-link to="/songs">Browse</router-link>
+      <div>|</div>
       <router-link v-if="!$store.state.isUserLoggedIn" to="/register"
         >Register</router-link
       >
