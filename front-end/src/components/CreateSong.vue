@@ -1,9 +1,9 @@
 <template>
   <section class="create-song flex content-center direction-column">
     <h2 class="flex-item uppercase">{{ msg }}</h2>
-    <form
+    <Form
       class="flex direction-row flex-wrap content-center"
-      v-on:submit.prevent="create"
+      v-on:submit="create"
       autocomplete="off"
     >
       <div class="flex-item flex direction-column vertical-align-center">
@@ -12,126 +12,147 @@
           class="input-block"
           v-bind:class="{ active: active_el == 1 }"
         >
-          <input
+          <Field
             id="title"
             type="text"
             name="title"
             v-model="song.title"
             v-bind:class="{ valid: song.title !== '' }"
+            as="input"
+            :rules="isRequired"
           />
           <label for="title">Title</label>
           <span
             v-on:click="activate(1)"
             v-bind:class="{ activespan: active_el == 1 }"
           ></span>
+          <ErrorMessage name="title" />
         </div>
         <div
           v-on:click="activate(2)"
           class="input-block"
           v-bind:class="{ active: active_el == 2 }"
         >
-          <input
+          <Field
             id="artist"
             type="text"
             name="artist"
             v-model="song.artist"
             v-bind:class="{ valid: song.artist !== '' }"
+            as="input"
+            :rules="isRequired"
           />
           <label for="artist">Artist</label>
           <span
             v-on:click="activate(2)"
             v-bind:class="{ activespan: active_el == 2 }"
           ></span>
+          <ErrorMessage name="artist" />
         </div>
         <div
           v-on:click="activate(3)"
           class="input-block"
           v-bind:class="{ active: active_el == 3 }"
         >
-          <input
+          <Field
             id="genre"
             type="text"
             name="genre"
             v-model="song.genre"
             v-bind:class="{ valid: song.genre !== '' }"
+            as="input"
+            :rules="isRequired"
           />
           <label for="genre">Genre</label>
           <span
             v-on:click="activate(3)"
             v-bind:class="{ activespan: active_el == 3 }"
           ></span>
+          <ErrorMessage name="genre" />
         </div>
         <div
           v-on:click="activate(4)"
           class="input-block"
           v-bind:class="{ active: active_el == 4 }"
         >
-          <input
+          <Field
             id="album"
             type="text"
             name="album"
             v-model="song.album"
             v-bind:class="{ valid: song.album !== '' }"
+            as="input"
+            :rules="isRequired"
           />
           <label for="album">Album</label>
           <span
             v-on:click="activate(4)"
             v-bind:class="{ activespan: active_el == 4 }"
           ></span>
+          <ErrorMessage name="album" />
         </div>
         <div
           v-on:click="activate(5)"
           class="input-block"
           v-bind:class="{ active: active_el == 5 }"
         >
-          <input
+          <Field
             id="album-image"
             type="text"
             name="album-image"
             v-model="song.albumImageUrl"
             v-bind:class="{ valid: song.albumImageUrl !== '' }"
+            as="input"
+            :rules="isRequired"
           />
           <label for="album-image">Album Image</label>
           <span
             v-on:click="activate(5)"
             v-bind:class="{ activespan: active_el == 5 }"
           ></span>
+          <ErrorMessage name="album-image" />
         </div>
         <div
           v-on:click="activate(6)"
           class="input-block"
           v-bind:class="{ active: active_el == 6 }"
         >
-          <input
+          <Field
             id="youtube-id"
             type="text"
             name="youtube-id"
             v-model="song.youtubeId"
             v-bind:class="{ valid: song.youtubeId !== '' }"
+            as="input"
+            :rules="isRequired"
           />
           <label for="youtube-id">YouTube Id</label>
           <span
             v-on:click="activate(6)"
             v-bind:class="{ activespan: active_el == 6 }"
           ></span>
+          <ErrorMessage name="youtube-id" />
         </div>
         <div
           v-on:click="activate(7)"
           class="input-block"
           v-bind:class="{ active: active_el == 7 }"
         >
-          <input
+          <Field
             id="tab"
             type="text"
             name="tab"
             v-model="song.tab"
             v-bind:class="{ valid: song.tab !== '' }"
+            as="input"
+            :rules="isRequired"
           />
           <label for="tab">Tab</label>
           <span
             v-on:click="activate(7)"
             v-bind:class="{ activespan: active_el == 7 }"
           ></span>
+          <ErrorMessage name="tab" />
         </div>
       </div>
       <div class="flex-item flex direction-column vertical-align-center">
@@ -140,31 +161,39 @@
           class="input-block"
           v-bind:class="{ active: active_el == 8 }"
         >
-          <textarea
+          <Field
             id="lyrics"
             name="lyrics"
             v-model="song.lyrics"
             v-bind:class="{ valid: song.lyrics !== '' }"
             rows="25"
             style="height:95.4%;resize:none;"
-          ></textarea>
+            as="textarea"
+            :rules="isRequired"
+          />
           <label for="lyrics">Lyrics</label>
           <span
             v-on:click="activate(8)"
             v-bind:class="{ activespan: active_el == 8 }"
           ></span>
+          <ErrorMessage name="lyrics" />
         </div>
       </div>
-      <div class="error" v-html="error" />
-      <button class="uppercase">Create Song</button>
-    </form>
+      <button type="submit" class="uppercase">Create Song</button>
+    </Form>
   </section>
 </template>
 
 <script>
 import SongsService from '../services/SongsService';
+import { Field, Form, ErrorMessage } from 'vee-validate';
 export default {
   name: 'Create-Song',
+  components: {
+    Field,
+    Form,
+    ErrorMessage,
+  },
   props: {},
   data() {
     return {
@@ -185,6 +214,12 @@ export default {
   methods: {
     activate(el) {
       this.active_el = el;
+    },
+    isRequired(value) {
+      if (value && value.trim()) {
+        return true;
+      }
+      return 'This is required';
     },
     async create() {
       try {
@@ -260,5 +295,13 @@ textarea {
   transition: all ease 0.5s;
   width: 13%;
   transform: scaleX(1);
+}
+span[role='alert'] {
+  position: absolute;
+  display: block;
+  left: 50%;
+  transform: translateX(-50%);
+  color: #f00;
+  font-size: 14px;
 }
 </style>

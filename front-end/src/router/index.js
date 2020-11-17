@@ -5,6 +5,7 @@ import Register from '../components/Register.vue';
 import Login from '../components/Login.vue';
 import Songs from '../components/Songs.vue';
 import CreateSong from '../components/CreateSong.vue';
+import ViewSong from '../components/ViewSong.vue';
 
 const routes = [
   {
@@ -36,6 +37,11 @@ const routes = [
     path: '/songs/create',
     name: 'Create-Song',
     component: CreateSong,
+  },
+  {
+    path: '/song/:songId',
+    name: 'View-Song',
+    component: ViewSong,
   },
 ];
 

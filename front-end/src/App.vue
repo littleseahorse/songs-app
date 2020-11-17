@@ -63,7 +63,7 @@ h1 {
 }
 h2 {
   margin: 0 0 10px;
-  padding: 15px 0 10px;
+  padding: 15px 10px 10px;
   font-size: 1em;
   color: #ffffff;
 }

@@ -11,7 +11,7 @@
           v-model="password"
         />
         <div class="error" v-html="error" />
-        <button class="uppercase">Login</button>
+        <button type="submit" class="uppercase">Login</button>
       </div>
     </form>
   </section>
