@@ -81,6 +81,19 @@ li {
 a {
   color: #48d1cc;
 }
+img {
+  width: auto;
+  max-width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0 15px;
+  border: none;
+  line-height: normal;
+  vertical-align: middle;
+  border-radius: 0;
+  filter: blur(0);
+  transform: translateZ(0);
+}
 #nav {
   z-index: 1;
   position: fixed;
@@ -109,6 +122,9 @@ section {
 }
 section h2 {
   background-color: #48d1cc;
+}
+iframe {
+  border: none;
 }
 input,
 textarea {
@@ -194,5 +210,39 @@ button:focus {
 .error {
   margin: 10px 0 0;
   color: red;
+}
+svg {
+  width: 22px;
+  border-radius: 50%;
+  transition: ease-in-out 0.4s;
+}
+svg:hover {
+  transform: scale(1.3);
+  cursor: pointer;
+  box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.2);
+}
+.song-data {
+  padding: 15px;
+}
+.song-data .flex-item {
+  width: auto;
+  min-width: 205px;
+  margin: 0 2px;
+}
+.song-data p {
+  margin: 2px 0;
+  font-size: 12px;
+}
+.song-data span {
+  font-size: 18px;
+}
+span.song-title {
+  font-size: 26px;
+}
+span.song-artist {
+  font-size: 22px;
+}
+span.song-album {
+  font-size: 14px;
 }
 </style>

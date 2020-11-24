@@ -1,5 +1,5 @@
 <template>
-  <section class="songs flex content-center direction-column">
+  <section class="songs-list flex content-center direction-column">
     <h2 class="flex-item uppercase flex direction-row content-between">
       <span class="flex-item">{{ msg }}</span
       ><fa
@@ -14,20 +14,20 @@
     </h2>
     <div class="flex-item flex direction-column">
       <div
-        class="flex direction-row content-between song"
+        class="song-data flex direction-row content-between"
         v-for="song in songs"
         v-bind:key="song.id"
       >
         <div class="flex-item flex direction-column vertical-align-start">
-          <span class="song-title">
-            {{ song.title }}
-          </span>
-          <span class="song-artist">
-            {{ song.artist }}
-          </span>
-          <span class="song-album">
-            {{ song.album }}
-          </span>
+          <p>
+            <i>Title: </i><span class="song-title">{{ song.title }}</span>
+          </p>
+          <p>
+            <i>Artist: </i><span class="song-artist">{{ song.artist }}</span>
+          </p>
+          <p>
+            <i>Album: </i><span class="song-album">{{ song.album }}</span>
+          </p>
           <button
             type="submit"
             v-on:click="
@@ -74,30 +74,10 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-.song {
-  padding: 15px;
+.song-data p {
+  text-align: left;
 }
-.song span {
-  display: block;
-  margin: 1px;
-}
-.song-title {
-  font-size: 26px;
-}
-.song-artist {
-  font-size: 20px;
-}
-.song-album {
-  font-size: 14px;
-}
-svg {
-  width: 22px;
-  border-radius: 50%;
-  transition: ease-in-out 0.4s;
-}
-svg:hover {
-  transform: scale(1.3);
-  cursor: pointer;
-  box-shadow: 0px 1px 3px -1px rgba(0, 0, 0, 0.2);
+img {
+  width: 200px;
 }
 </style>

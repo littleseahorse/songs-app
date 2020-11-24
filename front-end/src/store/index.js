@@ -15,7 +15,7 @@ export default createStore({
       } else {
         state.isUserLoggedIn = false;
       }
-      console.log(state);
+      // console.log(state);
     },
     setUser(state, user) {
       state.user = user;
