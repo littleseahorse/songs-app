@@ -28,6 +28,7 @@
 
 <script>
 export default {
+  name: 'YouTube',
   props: ['youtubeId'],
   data() {
     return {

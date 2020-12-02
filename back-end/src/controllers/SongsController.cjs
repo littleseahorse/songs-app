@@ -1,17 +1,41 @@
-//const { Songs } = require('../models/Songs.cjs');
 const db = require('../models/index.cjs');
+const { Op } = require('sequelize');
 
 module.exports = {
   async index(req, res) {
     try {
-      const songs = await db.Song.findAll({
-        limit: 20,
-      });
+      let songs = null;
+      const search = req.query.search;
+      if (search) {
+        songs = await db.Song.findAll({
+          where: {
+            [Op.or]: {
+              title: {
+                [Op.like]: `%${search}%`,
+              },
+              artist: {
+                [Op.like]: `%${search}%`,
+              },
+              album: {
+                [Op.like]: `%${search}%`,
+              },
+              genre: {
+                [Op.like]: `%${search}%`,
+              },
+            },
+          },
+        });
+      } else {
+        songs = await db.Song.findAll({
+          limit: 20,
+        });
+      }
       res.send(songs);
     } catch (error) {
+      // console.log(error);
       res.status(500).send({
         error:
-          'Oops, something went wrong! Please try to fetch the songs again.',
+          'Oops, something went wrong! Please try to search for a song again.',
       });
     }
   },

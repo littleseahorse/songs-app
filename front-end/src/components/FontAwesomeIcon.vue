@@ -14,7 +14,6 @@ import { findIconDefinition } from '@fortawesome/fontawesome-svg-core';
 
 export default defineComponent({
   name: 'FontAwesomeIcon',
-
   props: {
     icon: {
       type: String,
@@ -27,7 +26,6 @@ export default defineComponent({
     },
     class: String,
   },
-
   setup(props) {
     const definition = computed(() =>
       findIconDefinition({
@@ -35,11 +33,9 @@ export default defineComponent({
         iconName: props.icon,
       })
     );
-
     const width = computed(() => definition.value.icon[0]);
     const height = computed(() => definition.value.icon[1]);
     const svgPath = computed(() => definition.value.icon[4]);
-
     return { width, height, svgPath };
   },
 });

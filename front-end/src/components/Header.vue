@@ -6,9 +6,7 @@
     >
       <h2 class="uppercase">{{ msg }}</h2>
       <div>|</div>
-      <router-link to="/">Home</router-link>
-      <div>|</div>
-      <router-link to="/about">About</router-link>
+      <router-link :to="{ name: 'Home' }">Home</router-link>
       <div>|</div>
       <router-link to="/songs">Browse</router-link>
       <div>|</div>
@@ -19,7 +17,10 @@
       <router-link v-if="!$store.state.isUserLoggedIn" to="/login"
         >Log In</router-link
       >
-      <router-link v-if="$store.state.isUserLoggedIn" @click="logout" to="/"
+      <router-link
+        v-if="$store.state.isUserLoggedIn"
+        @click="logout"
+        to="/songs"
         >Log Out</router-link
       >
     </div>
@@ -29,10 +30,8 @@
 <script>
 export default {
   name: 'Header',
-  data() {
-    return {
-      msg: 'Songs Tracker',
-    };
+  props: {
+    msg: String,
   },
   methods: {
     logout() {

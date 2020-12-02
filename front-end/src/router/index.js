@@ -1,23 +1,23 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import Home from '../views/Home.vue';
-import About from '../views/About.vue';
 import Register from '../components/Register.vue';
 import Login from '../components/Login.vue';
-import Songs from '../components/Songs.vue';
+import Songs from '../components/Songs/Songs.vue';
 import CreateSong from '../components/CreateSong.vue';
 import ViewSong from '../components/ViewSong/ViewSong.vue';
 import EditSong from '../components/EditSong.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
+  {
+    path: '/:pathMatch(.*)*',
+    name: 'NotFound',
+    component: NotFound,
+  },
   {
     path: '/',
     name: 'Home',
     component: Home,
-  },
-  {
-    path: '/about',
-    name: 'About',
-    component: About,
   },
   {
     path: '/register',

@@ -188,7 +188,7 @@
 import SongsService from '../services/SongsService';
 import { Field, Form, ErrorMessage } from 'vee-validate';
 export default {
-  name: 'Create-Song',
+  name: 'Edit-Song',
   components: {
     Field,
     Form,

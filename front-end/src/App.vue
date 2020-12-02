@@ -1,6 +1,6 @@
 <template>
   <main>
-    <page-header />
+    <PageHeader msg="Songs Tracker" />
     <router-view />
   </main>
 </template>

@@ -2,7 +2,7 @@
   <section class="song-panel flex flex-wrap content-start direction-row">
     <SongMetadata v-bind:song="song" />
     <YouTube v-bind:youtubeId="song.youtubeId" />
-    <!-- <Lyrics v-bind:song_prop="song.lyrics" /> -->
+    <!-- <Lyrics v-bind:lyrics="song.lyrics" /> -->
 
     <div class="flex-item flex direction-column">
       <h2 class="flex-item uppercase flex direction-row content-between">
@@ -21,32 +21,6 @@
           </div>
         </div>
       </div>
-    </div>
-    <div
-      class="flex-item flex direction-row vertical-align-start content-center"
-    >
-      <button
-        v-on:click="
-          navigateTo({
-            name: 'Edit-Song',
-          })
-        "
-        type="submit"
-        class="uppercase"
-      >
-        Edit Song
-      </button>
-      <button
-        v-on:click="
-          navigateTo({
-            name: 'Songs',
-          })
-        "
-        type="submit"
-        class="uppercase"
-      >
-        View Songs
-      </button>
     </div>
   </section>
 </template>
@@ -75,11 +49,7 @@ export default {
     const response = await SongsService.show(songId);
     this.song = response.data;
   },
-  methods: {
-    navigateTo(route) {
-      this.$router.push(route);
-    },
-  },
+  methods: {},
 };
 </script>
 
@@ -100,9 +70,5 @@ textarea {
   outline: none;
   resize: none;
   border: 0;
-}
-button {
-  min-width: 120px;
-  margin: 10px 5px;
 }
 </style>

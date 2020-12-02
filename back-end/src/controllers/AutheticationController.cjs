@@ -1,4 +1,3 @@
-//const { User } = require('../models/User.cjs');
 const db = require('../models/index.cjs');
 const jwt = require('jsonwebtoken');
 const config = require('../config/config.cjs');
@@ -57,13 +56,3 @@ module.exports = {
     }
   },
 };
-
-// module.exports = {
-//   register: (req, res) => {
-//     res.send({
-//       message: `Hello, ${req.body.email}. Have fun!`,
-//     });
-//     console.log(`${req.body.email}`);
-//     // console.log(res);
-//   },
-// };

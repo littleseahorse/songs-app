@@ -1,5 +1,5 @@
 <template>
-  <section class="songs-list flex content-center direction-column">
+  <div>
     <h2 class="flex-item uppercase flex direction-row content-between">
       <span class="flex-item">{{ msg }}</span
       ><fa
@@ -46,13 +46,13 @@
         </div>
       </div>
     </div>
-  </section>
+  </div>
 </template>
 
 <script>
-import SongsService from '../services/SongsService';
+import SongsService from '../../services/SongsService';
 export default {
-  name: 'Songs',
+  name: 'SongsList',
   props: {},
   data() {
     return {
@@ -60,9 +60,14 @@ export default {
       songs: null,
     };
   },
-  async mounted() {
-    const response = await SongsService.index();
-    this.songs = response.data;
+  watch: {
+    '$route.query.search': {
+      immediate: true,
+      async handler(value) {
+        const response = await SongsService.index(value);
+        this.songs = response.data;
+      },
+    },
   },
   methods: {
     navigateTo(route) {

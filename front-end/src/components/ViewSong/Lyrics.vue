@@ -7,11 +7,7 @@
       <div class="song-data flex direction-row content-center">
         <div class="flex-item flex direction-column vertical-align-start">
           <p>
-            <textarea
-              class="song-lyrics"
-              v-model="song_prop"
-              readonly
-            ></textarea>
+            <textarea class="song-lyrics" v-model="lyrics" readonly></textarea>
           </p>
         </div>
       </div>
@@ -23,11 +19,12 @@
 export default {
   name: 'Lyrics',
   // props: ['song'],
-  props: ['song-prop'],
+  // props: ['song-prop'],
   // props: ['lyrics'],
   data() {
     return {
-      song_prop: this.song,
+      // song_prop: this.song,
+      lyrics: '',
       msg_lyrics: 'Lyrics',
     };
   },

@@ -218,10 +218,11 @@ export default {
     isRequired(value) {
       if (value && value.trim()) {
         return true;
+      } else {
+        return 'This is required';
       }
-      return 'This is required';
     },
-    async create() {
+    create: async function() {
       try {
         await SongsService.post(this.song);
         this.$router.push({
@@ -256,7 +257,7 @@ button {
 label {
   position: absolute;
   left: 18%;
-  top: 35px;
+  top: 45px;
   font-size: 18px;
   font-weight: 200;
   color: #cecece;
@@ -268,6 +269,7 @@ input,
 textarea {
   width: 65% !important;
   height: 40px;
+  margin: 30px 0 0;
   padding: 17px 5px 5px;
   outline: none;
   border: 0;
@@ -277,7 +279,7 @@ textarea {
 .active > input:focus ~ label,
 .active > textarea:focus ~ label {
   display: block;
-  top: 0px;
+  top: 10px;
   color: #2f4f4f;
   font-size: 13px;
 }
