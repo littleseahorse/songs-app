@@ -8,6 +8,7 @@ export default createStore({
     token: null,
     user: null,
     isUserLoggedIn: false,
+    // tableData: [],
   },
   mutations: {
     setToken(state, token) {
@@ -21,6 +22,9 @@ export default createStore({
     setUser(state, user) {
       state.user = user;
     },
+    // setTableData(state, payload) {
+    //   state.tableData = payload;
+    // },
   },
   actions: {
     setToken({ commit }, token) {
@@ -29,6 +33,10 @@ export default createStore({
     setUser({ commit }, user) {
       commit('setUser', user);
     },
+    // retrieveTableData({ commit }) {
+    //   let tableData;
+    //   commit('setTableData', tableData);
+    // },
   },
   modules: {},
 });

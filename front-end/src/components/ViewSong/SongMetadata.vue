@@ -86,7 +86,7 @@ export default {
     };
   },
   computed: {
-    ...mapState(['isUserLoggedIn']),
+    ...mapState(['isUserLoggedIn', 'user']),
   },
   mounted: async function() {
     if (!this.isUserLoggedIn) {
@@ -95,9 +95,13 @@ export default {
       try {
         const response = await BookmarksService.index({
           songId: this.$store.state.route.params.songId,
-          userId: this.$store.state.user.id,
+          userId: this.user.id,
         });
-        this.bookmark = response.data;
+        const bookmarks = response.data;
+        if (bookmarks.length) {
+          this.bookmark = bookmarks[0];
+          // console.log(this.bookmark);
+        }
       } catch (error) {
         console.log(error);
       }
@@ -111,7 +115,7 @@ export default {
       try {
         const response = await BookmarksService.post({
           songId: this.song.id,
-          userId: this.$store.state.user.id,
+          userId: this.user.id,
         });
         this.bookmark = response.data;
       } catch (error) {

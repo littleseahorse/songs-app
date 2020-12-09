@@ -1,8 +1,9 @@
 <template>
-  <div>
+  <div class="flex-item">
     <h2 class="flex-item uppercase flex direction-row content-between">
       <span class="flex-item">{{ msg }}</span
       ><fa
+        v-if="$store.state.isUserLoggedIn"
         v-on:click="
           navigateTo({
             name: 'Create-Song',

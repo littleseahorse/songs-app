@@ -26,7 +26,9 @@
 </template>
 
 <script>
+import { mapState } from 'vuex';
 import SongsService from '../../services/SongsService';
+import SongsHistoryService from '../../services/SongsHistoryService';
 import SongMetadata from './SongMetadata.vue';
 import YouTube from './YouTube.vue';
 // import Lyrics from './Lyrics.vue';
@@ -39,15 +41,25 @@ export default {
       song: {},
     };
   },
+  computed: {
+    ...mapState(['isUserLoggedIn', 'user', 'route']),
+  },
   components: {
     SongMetadata,
     YouTube,
     // Lyrics,
   },
   async mounted() {
-    const songId = this.$store.state.route.params.songId;
+    const songId = this.route.params.songId;
     const response = await SongsService.show(songId);
     this.song = response.data;
+
+    if (this.isUserLoggedIn) {
+      SongsHistoryService.post({
+        songId: songId,
+        userId: this.user.id,
+      });
+    }
   },
   methods: {},
 };
